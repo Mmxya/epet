@@ -9,6 +9,10 @@ const ShopList=()=>import('../pages/ShopList/ShopList.vue')
 const Cart=()=>import('../pages/Cart/Cart.vue')
 const Profile=()=>import('../pages/Profile/Profile.vue')
 
+import Classify from '../components/Classify/Classify.vue'
+import Brand from '../components/Brand/Brand.vue'
+
+
 Vue.use(VueRouter)
 
 export default new VueRouter({
@@ -27,9 +31,27 @@ export default new VueRouter({
     {
       path: '/shopList',
       component: ShopList,
-      meta:{
-        showFooter:true
-      }
+      children:[
+        {
+          path: '',
+          redirect: '/shopList/classify'
+        },
+        {
+          path:'/shopList/classify',
+          component:Classify,
+          meta:{
+            showFooter:true
+          }
+        },
+        {
+          path:'/shopList/brands',
+          component:Brand,
+          meta:{
+            showFooter:true
+          }
+        }
+      ],
+
     },
     {
       path: '/cart',
